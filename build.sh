@@ -16,6 +16,7 @@ yes | ./easyrsa build-ca nopass
 ./easyrsa build-server-full server nopass
 ./easyrsa build-client-full ubuntu nopass
 ./easyrsa build-client-full windows nopass
+./easyrsa build-client-full ios nopass
 ./easyrsa gen-dh
 ./easyrsa gen-crl
 openvpn --genkey --secret ta.key
@@ -23,5 +24,6 @@ cd ..
 
 ./make_client_ovpn.sh ubuntu ubuntu
 ./make_client_ovpn.sh windows windows
+./make_client_ovpn.sh ios ios
 
 docker build -t openvpn .
