@@ -26,9 +26,9 @@ docker run -d --restart always --privileged -p 1194:1194/udp <registry-host>/<re
 Before copying a client configuration to a client machine you need to add remote server IP to configuration file. Assume your server ip is 1.2.3.4, find the line `remote my-server-1 1194` in `ubuntu.ovpn` replace it with `remote 1.2.3.4 1194`
 
 ### Supported Operating Systems
-**Windows**: windows.ovpn
-**Ubuntu**: ubuntu.ovpn -> Install the `resolvconf` package otherwise the client may not OpenVPN DNS servers.<br>
-`sudo apt install resolvconf`
+**Windows**: windows.ovpn<br>
+**Ubuntu**: ubuntu.ovpn -> Install the `resolvconf` package otherwise the client may not use OpenVPN DNS servers.<br>
+`sudo apt install resolvconf`<br>
 **iOS**: ios.ovpn
 
 **Note**: ubuntu.ovpn may work with other Debian based systems but it is not tested.
