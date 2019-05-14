@@ -3,12 +3,14 @@
 OpenVPN server in a Docker container.
 
 ### Prerequisites
-sudo apt install wget openvpn docker
+`sudo apt install wget openvpn docker`
 
 ### Building
 Run `./build.sh`<br>
 A docker image named `openvpn` will be build.<br>
-You can find client configurations for each operating system in the root of the project directory. For example: `ubuntu.ovpn`
+You can find client configurations for each operating system in the root of the project directory. For example: `ubuntu.ovpn`<br>
+**Important note**: Each time you build the image new keys and certificates will be generated for both client and server. Therefore, client configurations will be regenerated.
+
 
 ### Pushing the Docker Image
 ```
@@ -23,7 +25,7 @@ docker run -d --restart always --privileged -p 1194:1194/udp <registry-host>/<re
 ```
 
 ### Client Configurations
-Before copying a client configuration to a client machine you need to add remote server IP to configuration file. Assume your server ip is 1.2.3.4, find the line `remote my-server-1 1194` in `ubuntu.ovpn` replace it with `remote 1.2.3.4 1194`
+Before copying a client configuration to a client machine you need to add remote server IP to configuration file. Assume your server IP is 1.2.3.4, find the line `remote my-server-1 1194` in `ubuntu.ovpn` replace it with `remote 1.2.3.4 1194`
 
 ### Supported Operating Systems
 **Windows**: windows.ovpn<br>
