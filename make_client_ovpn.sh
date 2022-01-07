@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # First argument: Identifier
 # Second argument: Operating system

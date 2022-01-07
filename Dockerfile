@@ -1,8 +1,8 @@
-FROM ubuntu:20.04 as build
+FROM alpine:3.15.0
 
 WORKDIR /build
 
-RUN apt-get update && apt-get install -y openssl iptables openvpn
+RUN apk add --update openssl iptables openvpn
 
 ADD https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.4/EasyRSA-3.0.4.tgz .
 RUN tar xvf EasyRSA-3.0.4.tgz
@@ -36,4 +36,5 @@ RUN cp /build/pki/dh.pem dh2048.pem
 RUN cp /build/ta.key .
 RUN cp /build/pki/crl.pem .
 
-CMD ["/bin/bash", "-c", "iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE && openvpn --config server.conf"]
+EXPOSE 1194/udp
+CMD ["/bin/sh", "-c", "iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE && openvpn --config server.conf"]
