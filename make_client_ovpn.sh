@@ -3,9 +3,10 @@
 # First argument: Identifier
 # Second argument: Operating system
 
-identifier="$identifier"
+identifier="$1"
 os="$2"
 
+mkdir -p ovpns
 cat $os.conf \
   <(echo -e "") \
   <(echo -e "<ca>") \
@@ -17,4 +18,4 @@ cat $os.conf \
   <(echo -e "</key>\n<tls-auth>") \
   ta.key \
   <(echo -e "</tls-auth>") \
-  > "$identifier".ovpn
+  > ovpns/"$identifier".ovpn
