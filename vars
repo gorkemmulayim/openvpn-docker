@@ -190,7 +190,7 @@ set_var EASYRSA_REQ_OU          "My Organizational Unit"
 # This is best left alone. Interactively you will set this manually, and BATCH
 # callers are expected to set this themselves.
 
-#set_var EASYRSA_REQ_CN		"ChangeMe"
+set_var EASYRSA_REQ_CN		"ChangeMe"
 
 # Cryptographic digest to use.
 # Do not change this default unless you understand the security implications.
@@ -202,4 +202,4 @@ set_var EASYRSA_REQ_OU          "My Organizational Unit"
 # in batch mode without any user input, confirmation on dangerous operations,
 # or most output. Setting this to any non-blank string enables batch mode.
 
-#set_var EASYRSA_BATCH		""
+set_var EASYRSA_BATCH		"yes"

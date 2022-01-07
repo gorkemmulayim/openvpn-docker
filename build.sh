@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -x
 set -e
@@ -12,7 +12,7 @@ tar xvf EasyRSA-3.0.4.tgz
 cd EasyRSA-3.0.4
 cp ../vars .
 ./easyrsa init-pki
-yes | ./easyrsa build-ca nopass
+./easyrsa build-ca nopass
 ./easyrsa build-server-full server nopass
 ./easyrsa build-client-full ubuntu nopass
 ./easyrsa build-client-full windows nopass
