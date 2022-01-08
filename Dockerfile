@@ -37,4 +37,4 @@ RUN cp /build/ta.key .
 RUN cp /build/pki/crl.pem .
 
 EXPOSE 1194/udp
-CMD ["/bin/sh", "-c", "iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE && openvpn --config server.conf"]
+CMD ["/bin/sh", "-c", "iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o eth0 -j MASQUERADE && openvpn --config server.conf"]
