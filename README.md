@@ -18,8 +18,9 @@ Connect to the machine you want to run OpenVPN server. Run the below command:
 ```
 docker network create --subnet 10.10.10.0/24 -d bridge openvpn
 docker volume create pihole
-docker run -d --name pihole --network openvpn --restart always --ip 10.10.10.10 -v pihole:/etc/pihole -e WEBPASSWORD="" -e PIHOLE_DNS_="208.67.222.222;208.67.220.220" -e WEBTHEME="darker" -e ServerIP="10.10.10.10" pihole/pihole:2022.01.1
-docker run -d --name openvpn --network openvpn --restart always -p 1194:1194/udp --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun openvpn```
+docker run -d --name pihole --network openvpn --restart always --hostname pihole --ip 10.10.10.10 -v pihole:/etc/pihole -e WEBPASSWORD="" -e PIHOLE_DNS_="208.67.222.222;208.67.220.220" -e WEBTHEME="darker" -e ServerIP="10.10.10.10" pihole/pihole:2022.01.1
+docker run -d --name openvpn --network openvpn --restart always --hostname openvpn -p 1194:1194/udp --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun openvpn
+```
 
 ### Client Configurations
 ```
