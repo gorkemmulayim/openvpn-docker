@@ -7,7 +7,8 @@ OpenVPN server in a Docker container.
 
 ### Building
 ```
-docker build -t openvpn .
+docker builder create --driver docker-container --name docker-container --bootstrap --use
+docker buildx build -t openvpn --platform linux/arm64 --builder docker-container --load .
 ```
 A docker image named `openvpn` will be build.<br>
 You can find client configurations for each operating system in the recently build container's `/build/ovpns` directory.<br>
