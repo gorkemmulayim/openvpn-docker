@@ -1,21 +1,21 @@
-FROM alpine:3.15.0
+FROM alpine:3.18.4
 
 WORKDIR /build
 
 RUN apk add --update openssl iptables openvpn
 
-ADD https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.4/EasyRSA-3.0.4.tgz .
-RUN tar xvf EasyRSA-3.0.4.tgz
-COPY vars EasyRSA-3.0.4/
-RUN ./EasyRSA-3.0.4/easyrsa init-pki
-RUN ./EasyRSA-3.0.4/easyrsa build-ca nopass -batch
-RUN ./EasyRSA-3.0.4/easyrsa build-server-full server nopass
-RUN ./EasyRSA-3.0.4/easyrsa build-client-full ubuntu nopass
-RUN ./EasyRSA-3.0.4/easyrsa build-client-full windows nopass
-RUN ./EasyRSA-3.0.4/easyrsa build-client-full ios nopass
-RUN ./EasyRSA-3.0.4/easyrsa gen-dh
-RUN ./EasyRSA-3.0.4/easyrsa gen-crl
-RUN openvpn --genkey --secret ta.key
+ADD https://github.com/OpenVPN/easy-rsa/releases/download/v3.1.7/EasyRSA-3.1.7.tgz .
+RUN tar xvf EasyRSA-3.1.7.tgz
+COPY vars .
+RUN ./EasyRSA-3.1.7/easyrsa init-pki
+RUN ./EasyRSA-3.1.7/easyrsa build-ca nopass -batch
+RUN ./EasyRSA-3.1.7/easyrsa build-server-full server nopass
+RUN ./EasyRSA-3.1.7/easyrsa build-client-full ubuntu nopass
+RUN ./EasyRSA-3.1.7/easyrsa build-client-full windows nopass
+RUN ./EasyRSA-3.1.7/easyrsa build-client-full ios nopass
+RUN ./EasyRSA-3.1.7/easyrsa gen-dh
+RUN ./EasyRSA-3.1.7/easyrsa gen-crl
+RUN openvpn --genkey secret ta.key
 
 COPY make_client_ovpn.sh .
 COPY ubuntu.conf .
